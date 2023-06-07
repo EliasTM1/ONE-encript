@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./css/styles.css" />
+		<title>Encrypter</title>
+	</head>
+	<body>
+		<main>
+            <!--  * First child starts -->
+            <div class="encr-form">
+                    <!-- * Logo -->
+                    <img id="aluLogo" src="./images/Logo.png" alt="logo" />
+					<form>
+                        <textarea placeholder="Ingrese el texto aqui"></textarea>
+						<!-- <input type="text" placeholder="Ingrese el texto aqui" /> -->
+						<div class="encr-buttons">
+							<span><img src="./images/exclamation.svg" /> Solo letras minúsculas y sin acentos</span>
+                            <div class="encr-btn-container">
+                                <button>Encriptar</button>
+                                <button>Desencriptar</button>
+                            </div>
+						</div>
+					</form>
+				</div>
+				<!--  * First child ends -->
+
+				<!--  * Muneco starts -->
+				<div class="encr-output">
+					<img src="./images/muneco.svg" />
+                    <h5>Ningún mensaje fue encontrado</h5>
+                    <span>Ingresa el texto que desees encriptar o desencriptar.</span>
+				</div>
+				<!--  * Muneco ends -->
+		</main>
+	</body>
+	<script src="./index.js"></script>
+</html>
