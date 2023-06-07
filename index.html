@@ -14,13 +14,13 @@
                     <!-- * Logo -->
                     <img id="aluLogo" src="./images/Logo.png" alt="logo" />
 					<form>
-                        <textarea placeholder="Ingrese el texto aqui"></textarea>
+                        <textarea id="encr-input" placeholder="Ingrese el texto aqui"></textarea>
 						<!-- <input type="text" placeholder="Ingrese el texto aqui" /> -->
 						<div class="encr-buttons">
 							<span><img src="./images/exclamation.svg" /> Solo letras minúsculas y sin acentos</span>
                             <div class="encr-btn-container">
-                                <button>Encriptar</button>
-                                <button>Desencriptar</button>
+                                <button id="encript-btn">Encriptar</button>
+                                <button id="decript-btn">Desencriptar</button>
                             </div>
 						</div>
 					</form>
@@ -29,12 +29,15 @@
 
 				<!--  * Muneco starts -->
 				<div class="encr-output">
-					<img src="./images/muneco.svg" />
-                    <h5>Ningún mensaje fue encontrado</h5>
-                    <span>Ingresa el texto que desees encriptar o desencriptar.</span>
+					<img id="munecoImg" src="./images/muneco.svg" />
+                    <h5 id="noMsg">Ningún mensaje fue encontrado</h5>
+                    <span id="infoMsg" >Ingresa el texto que desees encriptar o desencriptar.</span>
+					<div id="outputMsg"></div>
+					<button id="copyBtn">Copiar</button>
+
 				</div>
 				<!--  * Muneco ends -->
 		</main>
+		<script src="./index.js"></script>
 	</body>
-	<script src="./index.js"></script>
 </html>
