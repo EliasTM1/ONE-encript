@@ -182,7 +182,7 @@ textarea:focus {
 }
 
 /* * Encriped and copy button  */
-.encr-output div {
+.encr-output textarea {
 	background-color: transparent;
 	border: none;
 	font-family: "Inter", sans-serif;
