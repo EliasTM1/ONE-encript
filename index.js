@@ -69,6 +69,11 @@ function swapReplacementKeys() {
 	Object.keys(replacements).forEach((key) => reversedReplacements[replacements[key]] = key );
 }
 swapReplacementKeys();
+toggleOutputMessage();
+
+// * All above working
+
+
 
 function decryptMessage(e) {
 	e.preventDefault();
@@ -106,4 +111,3 @@ function containsCoincidences(word, coincidences) {
 	return containsCoincidences(word.slice(1), coincidences);
 }
 
-toggleOutputMessage();
