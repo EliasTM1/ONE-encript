@@ -12,10 +12,36 @@ const infoMsgTxt = document.querySelector("#infoMsg");
 const outputMessage = document.querySelector("#outputMsg");
 const copyButton = document.querySelector("#copyBtn");
 
+const reversedReplacements = {};
+const replacements = {
+	a: "ai",
+	e: "enter",
+	i: "imes",
+	o: "ober",
+	u: "ufat",
+};
+
+// const elementsToToggle = [
+// 	munecoImg,
+// 	noMsgTxt,
+// 	infoMsgTxt,
+// 	outputMessage,
+// 	copyButton,
+//   ];
+
 // * Event listeners
-encryptButton.addEventListener("click", (e) => encryptMessage(e));
-decryptButton.addEventListener("click", (e) => decryptMessage(e));
+encryptButton.addEventListener("click", (e) => handleEncription(e));
+decryptButton.addEventListener("click", (e) => handleDecrypt(e));
 copyButton.addEventListener("click", (e) => copyyEncryptedMessage(e));
+
+swapReplacementKeys();
+toggleOutputMessage();
+
+function swapReplacementKeys() {
+	Object.keys(replacements).forEach(
+		(key) => (reversedReplacements[replacements[key]] = key)
+	);
+}
 
 function toggleOutputMessage() {
 	if (
@@ -35,98 +61,60 @@ function toggleOutputMessage() {
 	outputMessage.style.display = "none";
 	copyButton.style.display = "none";
 }
+// * Encription
 
-function encryptMessage(e) {
+function handleEncription(e) {
 	e.preventDefault();
 	if (inputTextarea.value.trim().length === 0) return;
-	const speratedValues = inputTextarea.value.split("");
-	const encriptedWord = speratedValues.map((letter, index) => {
-		switch (letter) {
-			case "a":
-				return "ai";
-				break;
-			case "e":
-				return "enter";
-				break;
-			case "i":
-				return "imes";
-				break;
-			case "o":
-				return "ober";
-				break;
-			case "u":
-				return "ufat";
-				break;
-			default:
-				return letter;
-				break;
-		}
-	});
-	// * Check if the message is empty
+	const separatedLetters = inputTextarea.value.split("");
+	const encriptedWord = separatedLetters.map((letter) => encryptWord(letter));
+	console.log(encriptedWord.join(""), "encriptedWord")
 	toggleOutputMessage();
 	outputMessage.value = encriptedWord.join("");
-	// Clean input
-	// inputTextarea.value = "";
-	
+	inputTextarea.value = "";
 }
 
-function copyyEncryptedMessage(e) {
-	e.preventDefault();
-	navigator.clipboard
-		.writeText(outputMessage.value)
-		.then(() => {
-			// console.log("Copied to clipboard successfully!");
-		})
-		.catch((err) => {
-			throw err;
-		});
+function encryptWord(letter) {
+	let replacementsValues = Object.keys(replacements)
+	replacementsValues.forEach((replacement) => {
+		if (letter === replacement) letter = replacements[replacement];
+		
+	})
+	return letter;
 }
 
-const reversedReplacements = {};
-const replacements = {
-	a: "ai",
-	e: "enter",
-	i: "imes",
-	o: "ober",
-	u: "ufat",
-};
+// * Encription end
 
-function swapReplacementKeys() {
-	Object.keys(replacements).forEach(
-		(key) => (reversedReplacements[replacements[key]] = key)
-	);
-}
+// * Decription
 
-swapReplacementKeys();
-toggleOutputMessage();
-
-// * All above working
-
-function decryptMessage(e) {
+function handleDecrypt(e) {
 	e.preventDefault();
 	let messageToDecrypt;
 	// * No message to decrypt
-	if(inputTextarea.value.length === 0 && outputMessage.value.trim().length === 0 ) return;
+	if (
+		inputTextarea.value.length === 0 &&
+		outputMessage.value.trim().length === 0
+	)
+		return;
 	// * Message to decrypt is inputText area
-	if (outputMessage.value.trim().length === 0 && inputTextarea.value.length !== 0) messageToDecrypt = inputTextarea.value.trim();
+	if (
+		outputMessage.value.trim().length === 0 &&
+		inputTextarea.value.length !== 0
+	)
+		messageToDecrypt = inputTextarea.value.trim();
 	// * Message to decrypt is output area
 	else messageToDecrypt = inputTextarea.value.trim().split(" ");
 	console.log(inputTextarea.value.length, "inputTextarea.value.length");
 	let decrypted = messageToDecrypt.map((word) => decriptWord(word));
-	console.log(decrypted.join(' '), "DECRIPTED MESSAGE ******");
+	outputMessage.value = decrypted.join(" ");
+	// toggleOutputMessage();
 }
 
-
-
 function decriptWord(word) {
-	// console.warn(word, "word");
-	// console.log(replacements, "replacements");
 	const replacementValues = Object.values(replacements);
 	let newWord;
 	//  * use includes to check if the need to be decrypted
-	replacementValues.forEach((replacement, indexfor) => {
-		
-		console.log(replacement, "replacement");
+	replacementValues.forEach((replacement) => {
 		if (word.includes(replacement)) {
 			while (word.includes(replacement)) {
 				word = word.replace(replacement, reversedReplacements[replacement]);
@@ -137,8 +125,18 @@ function decriptWord(word) {
 	return newWord;
 }
 
-function containsCoincidences(word, coincidences) {
-	if (word.length === 0) return false;
-	if (coincidences.includes(word[0])) return true;
-	return containsCoincidences(word.slice(1), coincidences);
+// * Decription end
+
+// * Bons copy encripted or decripted message
+function copyyEncryptedMessage(e) {
+	e.preventDefault();
+	navigator.clipboard
+		.writeText(outputMessage.value)
+		.then(() => {
+			inputTextarea.value = "";
+			// toggleOutputMessage();
+		})
+		.catch((err) => {
+			throw err;
+		});
 }
