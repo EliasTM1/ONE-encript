@@ -4,9 +4,9 @@ const encryptButton = document.querySelector("#encript-btn");
 const decryptButton = document.querySelector("#decript-btn");
 
 // * Elements from card
-const munecoImg = document.querySelector("#munecoImg");
-const noMsgTxt = document.querySelector("#noMsg");
-const infoMsgTxt = document.querySelector("#infoMsg");
+const cardImg = document.querySelector("#munecoImg");
+const noTextMessage = document.querySelector("#noMsg");
+const infoTextMessage = document.querySelector("#infoMsg");
 
 // * Worked message and copy button
 const outputMessage = document.querySelector("#outputMsg");
@@ -22,13 +22,14 @@ const replacements = {
 };
 
 const activeOutput = [outputMessage, copyButton];
+const noActiveOutput = [cardImg, noTextMessage, infoTextMessage];
+let inactiveOutputGlobal = outputMessage.style.display === "none" && copyButton.style.display === "none";
 
-const noActiveOutput = [munecoImg, noMsgTxt, infoMsgTxt];
 
 // * Event listeners
-encryptButton.addEventListener("click", (e) => handleEncription(e));
-decryptButton.addEventListener("click", (e) => handleDecrypt(e));
-copyButton.addEventListener("click", (e) => copyyEncryptedMessage(e));
+encryptButton.addEventListener("click", (e) => handleEncryption(e));
+decryptButton.addEventListener("click", (e) => handleDecryption(e));
+copyButton.addEventListener("click", (e) => copyEncryptedMessage(e));
 
 swapReplacementKeys();
 initUI();
@@ -45,27 +46,25 @@ function initUI() {
 }
 
 function toggleOutputMessage() {
-	const inactiveOutput =
-		outputMessage.style.display === "none" &&
-		copyButton.style.display === "none";
-	if (inactiveOutput) {
+	inactiveOutputGlobal = !inactiveOutputGlobal;
+	if (inactiveOutputGlobal) {
 		for (const element of activeOutput) element.style.display = "block";
 		for (const element of noActiveOutput) element.style.display = "none";
 		return;
 	}
-
 	for (const element of activeOutput) element.style.display = "none";
 	for (const element of noActiveOutput) element.style.display = "block";
 }
 
 // * Encription
 
-function handleEncription(e) {
+function handleEncryption(e) {
 	e.preventDefault();
 	if (inputTextarea.value.trim().length === 0) return;
+	if(inactiveOutputGlobal) toggleOutputMessage();
+	
 	const separatedLetters = inputTextarea.value.split("");
 	const encriptedWord = separatedLetters.map(encryptWord);
-	console.log(encriptedWord.join(""), "encriptedWord");
 	toggleOutputMessage();
 	outputMessage.value = encriptedWord.join("");
 	inputTextarea.value = "";
@@ -80,32 +79,34 @@ function encryptWord(letter) {
 
 // * Decription
 
-function handleDecrypt(e) {
+function handleDecryption(e) {
 	e.preventDefault();
 	let messageToDecrypt = inputTextarea.value.trim();
 	if (messageToDecrypt.length === 0) return;
+	if(inactiveOutputGlobal) toggleOutputMessage();
 	outputMessage.value = messageToDecrypt.split(" ").map(decriptWord).join(" ");
+	toggleOutputMessage();
+	inputTextarea.value = "";
 }
 
 function decriptWord(word) {
-	const replacementValues = Object.values(replacements);
-	let newWord;
-	//  * use includes to check if the need to be decrypted
-	replacementValues.forEach((replacement) => {
-		if (word.includes(replacement)) {
-			while (word.includes(replacement)) {
-				word = word.replace(replacement, reversedReplacements[replacement]);
-			}
-		}
-		newWord = word;
-	});
-	return newWord;
+    const replacementValues = Object.values(replacements);
+    let newWord = word;
+    //  * use includes to check if the need to be decrypted
+    for(let i = 0; i < replacementValues.length; i++) {
+        const replacement = replacementValues[i];
+        const regex = new RegExp(replacement, 'g');
+        if (newWord.includes(replacement)) {
+            newWord = newWord.replace(regex, reversedReplacements[replacement]);
+        }
+    }
+    return newWord;
 }
 
 // * Decription end
 
 // * Bons copy encripted or decripted message
-function copyyEncryptedMessage(e) {
+function copyEncryptedMessage(e) {
 	e.preventDefault();
 	navigator.clipboard
 		.writeText(outputMessage.value)
