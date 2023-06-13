@@ -13,6 +13,34 @@ const outputMessage = document.querySelector("#outputMsg");
 const copyButton = document.querySelector("#copyBtn");
 
 const reversedReplacements = {};
+// const replacements = {
+// 	a: "mgatofle",
+// 	e: "QlensjaIN",
+// 	i: "TRASmQlec",
+// 	o: "gat95XOSb",
+// 	u: "lecalmjaf",
+// 	s: "sgat95XOS",
+// 	t: "tTRAStmga",
+// 	n: "nQlecalmj",
+// 	r: "rmgat95XO",
+// 	l: "llensjacT",
+// 	m: "mmgat95XO",
+// 	p: "phgat95XO",
+// 	g: "gmgat95XO",
+// 	h: "hlaodjlam",
+// 	y: "ylaodjtam",
+// 	b: "brmgat9la",
+// 	v: "vlaodjctg",
+// 	f: "fmgat9lao",
+// 	c: "cgat95XOS",
+// 	k: "kTRASlgat",
+// 	j: "jmgat95XO",
+// 	d: "d5ltmgat9",
+// 	z: "zlensjall",
+// 	x: "x5ngat95X",
+// 	w: "whTRASsk5",
+// 	q: "qlensjamg",
+// };
 const replacements = {
 	a: "ai",
 	e: "enter",

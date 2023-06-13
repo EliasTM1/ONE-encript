@@ -186,7 +186,7 @@ textarea:focus {
 	background-color: transparent;
 	border: none;
 	font-family: "Inter", sans-serif;
-	height: 781px;
+	min-height: 781px;
 	margin-top: 32px;
 	position: absolute;
 	resize: none;
@@ -223,7 +223,66 @@ textarea:focus {
 
 /* Tablet */
 @media (min-width: 376px) and (max-width: 768px) {
-	/* Your styles here */
+	main {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		/* height: ; */
+		height: auto;
+	}
+
+	#aluLogo {
+		top: 40px;
+		left: 20px;
+	}
+
+	.encr-form {
+		width: 100%;
+	}
+
+	.encr-form {
+		flex-direction: column;
+	}
+
+	form textarea {
+		margin-top: 150px;
+		height: 60%;
+	}
+
+	.encr-form form {
+		align-self: flex-end;
+		height: 90%;
+		width: 95%;
+		float: right;
+	}
+
+	.encr-output {
+		width: 688px;
+		/* height: min-content; */
+		height: auto;
+		/* height: calc(32vh - 90px); */
+		height: 300px;
+		margin-bottom: 40px;
+		padding: 2rem;
+	}
+
+	.encr-output img {
+		height: auto;
+		display: none !important;
+	}
+	
+	.encr-output textarea {
+		width: 90%;
+		height: 50% !important;
+		min-height: max-content !important;
+		overflow: scroll;
+		margin-bottom: 100px;
+	}
+	
+	.encr-output button {
+		width: 90%;
+		padding: 1rem;
+	}
 }
 
 /* Mobile */

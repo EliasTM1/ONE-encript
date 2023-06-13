@@ -9,34 +9,40 @@
 	</head>
 	<body>
 		<main>
-            <!--  * First child starts -->
-            <div class="encr-form">
-                    <!-- * Logo -->
-                    <img id="aluLogo" src="./images/Logo.png" alt="logo" />
-					<form>
-                        <textarea id="encr-input" placeholder="Ingrese el texto aqui"></textarea>
-						<!-- <input type="text" placeholder="Ingrese el texto aqui" /> -->
-						<div class="encr-buttons">
-							<span><img src="./images/exclamation.svg" /> Solo letras minúsculas y sin acentos</span>
-                            <div class="encr-btn-container">
-                                <button id="encript-btn">Encriptar</button>
-                                <button id="decript-btn">Desencriptar</button>
-                            </div>
+			<!--  * First child starts -->
+			<div class="encr-form">
+				<!-- * Logo -->
+				<img id="aluLogo" src="./images/Logo.png" alt="logo" />
+				<form>
+					<textarea
+						id="encr-input"
+						placeholder="Ingrese el texto aqui"
+					></textarea>
+					<div class="encr-buttons">
+						<span
+							><img src="./images/exclamation.svg" /> Solo letras minúsculas y
+							sin acentos</span
+						>
+						<div class="encr-btn-container">
+							<button id="encript-btn">Encriptar</button>
+							<button id="decript-btn">Desencriptar</button>
 						</div>
-					</form>
-				</div>
-				<!--  * First child ends -->
+					</div>
+				</form>
+			</div>
+			<!--  * First child ends -->
 
-				<!--  * Muneco starts -->
-				<div class="encr-output">
-					<img id="munecoImg" src="./images/muneco.svg" />
-                    <h5 id="noMsg">Ningún mensaje fue encontrado</h5>
-                    <span id="infoMsg" >Ingresa el texto que desees encriptar o desencriptar.</span>
-					<textarea id="outputMsg"></textarea>
-					<button id="copyBtn">Copiar</button>
-
-				</div>
-				<!--  * Muneco ends -->
+			<!--  * Muneco starts -->
+			<div class="encr-output">
+				<img id="munecoImg" src="./images/muneco.svg" />
+				<h5 id="noMsg">Ningún mensaje fue encontrado</h5>
+				<span id="infoMsg"
+					>Ingresa el texto que desees encriptar o desencriptar.</span
+				>
+				<textarea id="outputMsg"></textarea>
+				<button id="copyBtn">Copiar</button>
+			</div>
+			<!--  * Muneco ends -->
 		</main>
 		<script src="./index.js"></script>
 	</body>
