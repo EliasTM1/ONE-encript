@@ -1,5 +1,4 @@
 :root {
-	/* Colors */
 	--primary-color: #f3f5fc;
 	--secondary-color: #0a3871;
 	--text-color: #d8dfe8;
@@ -112,10 +111,6 @@ textarea:focus {
 	margin-right: 8px;
 }
 
-.encr-btn-container {
-	/* display: flex; */
-}
-
 .encr-btn-container button {
 	cursor: pointer;
 	position: relative;
@@ -130,7 +125,7 @@ textarea:focus {
 	font-weight: 400;
 }
 
-.encr-btn-container button + button {
+.encr-btn-container button+button {
 	cursor: pointer;
 	height: 60px;
 	border: 1px solid var(--secondary-color);
@@ -202,7 +197,6 @@ textarea:focus {
 .encr-output button {
 	position: absolute;
 	cursor: pointer;
-	/* margin-top: 32px; */
 	resize: none;
 	bottom: 32px;
 	width: 336px;
@@ -215,7 +209,6 @@ textarea:focus {
 	font-size: 16px;
 	line-height: 19px;
 	text-align: center;
-	/* Dark blue/dark-blue-300 */
 	color: #0A3871;
 }
 
@@ -227,7 +220,6 @@ textarea:focus {
 		display: flex;
 		flex-direction: column;
 		width: 100%;
-		/* height: ; */
 		height: auto;
 	}
 
@@ -257,11 +249,9 @@ textarea:focus {
 	}
 
 	.encr-output {
+		position: relative;
 		width: 688px;
-		/* height: min-content; */
 		height: auto;
-		/* height: calc(32vh - 90px); */
-		height: 300px;
 		margin-bottom: 40px;
 		padding: 2rem;
 	}
@@ -270,15 +260,15 @@ textarea:focus {
 		height: auto;
 		display: none !important;
 	}
-	
+
 	.encr-output textarea {
 		width: 90%;
-		height: 50% !important;
-		min-height: max-content !important;
+		height: auto !important;
+		position: relative;
 		overflow: scroll;
 		margin-bottom: 100px;
 	}
-	
+
 	.encr-output button {
 		width: 90%;
 		padding: 1rem;
@@ -286,6 +276,6 @@ textarea:focus {
 }
 
 /* Mobile */
-@media (max-width: 375px) {
+@media (max-width: 357px) {
 	/* Your styles here */
 }
